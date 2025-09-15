@@ -269,4 +269,4 @@ def signup(request):
         form = UserRegistrationForm()
 
     # Render signup page with form
-    return render(request, 'app.html', {'form': form, 'type': 'Signup', 'my_date': date.today()})
+    return render(request, 'app1.html', {'form': form, 'type': 'Signup', 'my_date': date.today()})

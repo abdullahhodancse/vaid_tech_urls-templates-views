@@ -1,36 +1,39 @@
+{% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ type }}</title>
-    <!-- Bootstrap CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+{% block title %}{{ type }}{% endblock %}
 
+{% block body %}
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
             <div class="card shadow-sm border-0">
+                <!-- Card Header -->
                 <div class="card-header bg-primary text-white text-center">
-                     <h4 class="mb-0">{{ type }}</h4>
+                    <h4 class="mb-0">{{ type }}</h4>
                 </div>
+
+                <!-- Card Body -->
                 <div class="card-body">
-                     <p class="text-muted text-center">
+                    <!-- Image -->
+                    <div class="text-center mb-3">
+                        <img src="{% static 'IMG_0154.JPG' %}" alt="My Picture" width="200" height="150" class="img-fluid rounded">
+                    </div>
+
+                    <!-- Date -->
+                    <p class="text-muted text-center">
                         Today's Date: <strong>{{ my_date|date:"Y-m-d" }}</strong>
                     </p>
 
-                    <!-- 🔹 Example: IF-ELSE Condition -->
+                    <!-- User Authentication Status -->
                     {% if user.is_authenticated %}
                         <p class="text-success text-center">Welcome back, {{ user.username }}!</p>
                     {% else %}
                         <p class="text-danger text-center">You are not logged in!</p>
                     {% endif %}
 
-                    <!-- 🔹 Example: FOR Loop -->
+                    <!-- Available Items List -->
                     <h5 class="mt-4">Available Items:</h5>
                     <ul class="list-group mb-3">
                         {% for item in items %}
@@ -40,6 +43,7 @@
                         {% endfor %}
                     </ul>
 
+                    <!-- Form -->
                     <form method="post" novalidate>
                         {% csrf_token %}
                         {{ form|crispy }}
@@ -52,7 +56,4 @@
         </div>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+{% endblock %}

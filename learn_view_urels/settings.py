@@ -75,6 +75,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'learn_view_urels.wsgi.application'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 
 # Database
