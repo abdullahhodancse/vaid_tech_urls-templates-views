@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if account %}
+    <h2>Welcome, {{ account.user.username }}</h2>
+
+    {% if account.department and account.department|upper == "CSE" %}
+        <p>How Brilliant you are ❤️❤️</p>
+    {% endif %}
+{% else %}
+    <p>No account found!</p>
+{% endif %}
+    
+</body>
+</html>

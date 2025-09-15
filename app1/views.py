@@ -242,6 +242,8 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.contrib import messages
 from .forms import UserRegistrationForm  # Make sure this is your form
 from datetime import date
+from django.contrib.auth.decorators import login_required
+from app1.models import Account
 
 
 def signup(request):
@@ -251,10 +253,13 @@ def signup(request):
             user = form.save()
             
             # Extract extra data if needed
-            roll = form.cleaned_data.get('roll')
-            reg = form.cleaned_data.get('reg')
-            department = form.cleaned_data.get('department')
-            session = form.cleaned_data.get('session')
+            Account.objects.create(
+            user=user,    
+               
+            roll = form.cleaned_data.get('roll'),
+            reg = form.cleaned_data.get('reg'),
+            department = form.cleaned_data.get('department'),
+            session = form.cleaned_data.get('session') ),
 
             # Success message
             messages.success(request, f"Account created successfully! Please log in.")
@@ -270,3 +275,21 @@ def signup(request):
 
     # Render signup page with form
     return render(request, 'app1.html', {'form': form, 'type': 'Signup', 'my_date': date.today()})
+    
+
+# @login_required
+# def login_view(request):
+#      account=request.user.account
+#      return render(request, 'login.html',{'account': account})
+
+
+
+@login_required
+def login_view(request):
+    try:
+        account = request.user.account
+    except Account.DoesNotExist:
+        account = None  # অথবা নতুন Account create করতে পারেন
+
+    return render(request, 'login.html', {'account': account})
+   
