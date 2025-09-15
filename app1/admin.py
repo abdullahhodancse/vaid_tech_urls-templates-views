@@ -10,5 +10,10 @@ from app1.models import Account
 
 @admin.register(Account)
 class AccountAdmin(admin.ModelAdmin):
-    pass
-   
+    list_display = ["roll", "session"]
+
+    @admin.display(empty_value="???")  
+    def session(self, obj):
+        return obj.session
+    
+
