@@ -13,11 +13,22 @@ class Account(models.Model):
     session = models.CharField(max_length=20, null=True, blank=True,default='2020-2021')
 
     def __str__(self):
-        if self.department and self.department.upper() == "CSE":
-            return f"{self.user.username} - How Brilliant you are ❤️❤️"
-        
+       
 
         return self.user.username
+
+    def save( self,*args,**kwargs):
+        if self.roll is not None and self.roll<0:
+            raise ValueError("Roll can not be negative")
+        
+        if self.reg is not None and self.reg<0:
+            raise ValueError("Reg can not be negative")
+        
+        
+        
+        
+        super().save(*args,**kwargs)
+
 
 
     

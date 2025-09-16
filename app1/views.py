@@ -14,15 +14,25 @@ def signup(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-
-            # Create Account
-            Account.objects.create(
+            try:
+                Account.objects.create(
                 user=user,
                 roll=form.cleaned_data.get('roll'),
                 reg=form.cleaned_data.get('reg'),
                 department=form.cleaned_data.get('department'),
                 session=form.cleaned_data.get('session')
             )
+                
+            except ValueError as e:
+                messages.error(request, str(e))
+                user.delete()  # Optional: rollback user creation
+                return redirect('signup')
+        
+            
+
+
+            # Create Account
+            
 
             # Auto-login
             username = form.cleaned_data.get('username')
