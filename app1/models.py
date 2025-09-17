@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 
 
+
 class Account(models.Model):
     user = models.OneToOneField(User, related_name='account', on_delete=models.CASCADE)
     roll = models.IntegerField( null=True, blank=True,default=0000000)
@@ -31,4 +32,38 @@ class Account(models.Model):
 
 
 
+class Subject(models.Model):
+    name=models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class Department(models.Model):
+    name=models.CharField(max_length=100)  
+
+
+    def __str__(self):
+        return self.name 
     
+
+class teacher(models.Model):
+    
+    name=models.CharField(max_length=20)
+    slary=models.DecimalField(max_digits=10,decimal_places=2)  
+    subject =models.ManyToManyField(Subject,related_name="teacher_sub")
+    department=models.ForeignKey(Department,on_delete=models.CASCADE, related_name="Teachers")
+
+
+    def __str__(self):
+        return self.name
+    
+
+
+
+
+
+
+
+
+
