@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher List</title>
+</head>
+<body>
+    <h1>All Teachers</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Department</th>
+            <th>Subjects</th>
+        </tr>
+        {% for teacher in teachers %}
+        <tr>
+            <td>{{ teacher.name }}</td>
+            <td>{{ teacher.slary }}</td>
+            <td>{{ teacher.department.name }}</td>
+            <td>
+                {% for sub in teacher.subject.all %}
+                    {{ sub.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

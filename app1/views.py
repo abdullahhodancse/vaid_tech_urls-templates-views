@@ -10,6 +10,7 @@ from django.contrib.auth import login, authenticate
 
 from django.db.models import Sum
 from app1.models import teacher
+from django.views.generic  import ListView
 
 
 
@@ -80,6 +81,9 @@ def total_salary_view(request):
     return render(request, "total_salary.html", {"total_salary": total_salary})
 
 
-
+class teacher_list(ListView):   #class base view,
+    model=teacher
+    template_name="teacher_list.html"
+    context_object_name="teachers"
 
 
