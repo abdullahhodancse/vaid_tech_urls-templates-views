@@ -9,7 +9,8 @@ from app1.models import Account
 from django.contrib.auth import login, authenticate
 
 from django.db.models import Sum
-from .models import teacher
+from app1.models import teacher
+
 
 
 def signup(request):
@@ -69,38 +70,14 @@ def login_view(request):
 
 
 
-
+#tortal satry od teacher
 
 def total_salary_view(request):
     
-    total_salary = teacher.objects.aggregate(total=Sum('slary'))
+    total_salary = teacher.objects.aggregate(total=Sum('slary')) #aggerget use korle total sum payoa jay,ba aro math kora jai,loke
 
     
     return render(request, "total_salary.html", {"total_salary": total_salary})
-
-
-
-# from app1.models import Department, Subject, teacher
-# from django.db.models import Sum
-
-
-# d1=Department.objects.create(name="CSE")
-
-# d2=Department.objects.create(name="EEE")
-# d3=Department.objects.create(name="ICT")
-
-
-# oop = Subject.objects.create(name="OOP")
-# ds = Subject.objects.create(name="Data Structures")
-
-
-# t1 = teacher.objects.create(name="Abdullah", salary=35000, department=d1)
-# t2 = teacher.objects.create(name="Karim", salary=30000, department=d2)
-
-
-# t1.subject.add(oop, ds)
-# t2.subject.add(ds)
-
 
 
 

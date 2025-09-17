@@ -31,14 +31,14 @@ class Account(models.Model):
         super().save(*args,**kwargs)
 
 
-
+#subject model
 class Subject(models.Model):
     name=models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
 
-
+#department model
 class Department(models.Model):
     name=models.CharField(max_length=100)  
 
@@ -46,7 +46,7 @@ class Department(models.Model):
     def __str__(self):
         return self.name 
     
-
+#teacher model
 class teacher(models.Model):
     
     name=models.CharField(max_length=20)
