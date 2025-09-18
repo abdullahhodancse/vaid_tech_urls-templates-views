@@ -1,27 +1,15 @@
 
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseNotFound
 from django.contrib import messages
 from ..forms import UserRegistrationForm  # Make sure this is your form
 from datetime import date
 from django.contrib.auth.decorators import login_required
-
 from django.contrib.auth import login, authenticate
 from app1.models.student_model import Student
-
-
-
-
-
-
-
-
-
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from datetime import date
-from ..forms import UserRegistrationForm
+
 
 def signup(request):
     if request.method == 'POST':
@@ -66,10 +54,7 @@ def signup(request):
 
 
 
-
-
-
-@login_required
+@login_required #loing 
 def login_view(request):
     try:
        student = request.user.student
