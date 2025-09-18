@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from app1.departments_model import Department
-from app1.subjects_model import Subject
+from app1.models.departments_model import Department
+from app1.models.subjects_model import Subject
 
 
 

@@ -2,15 +2,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
 from django.contrib import messages
-from .forms import UserRegistrationForm  # Make sure this is your form
+from ..forms import UserRegistrationForm  # Make sure this is your form
 from datetime import date
 from django.contrib.auth.decorators import login_required
-from app1.models import Student
-from django.contrib.auth import login, authenticate
 
-from django.db.models import Sum
-from app1.models import Teacher
-from django.views.generic  import ListView
+from django.contrib.auth import login, authenticate
+from app1.models.student_model import Student
+
+
+
 
 
 
@@ -21,7 +21,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from datetime import date
-from .forms import UserRegistrationForm
+from ..forms import UserRegistrationForm
 
 def signup(request):
     if request.method == 'POST':
@@ -80,26 +80,13 @@ def login_view(request):
 
 
 
-#tortal satry od teacher
-
-def total_salary_view(request):
-    
-    total_salary = Teacher.objects.aggregate(total=Sum('slary')) #aggerget use korle total sum payoa jay,ba aro math kora jai,loke
-
-    
-    return render(request, "total_salary.html", {"total_salary": total_salary})
-
-
-class teacher_list(ListView):   #class base view,
-    model=Teacher
-    template_name="teacher_list.html"
-    context_object_name="teachers"
+#
 
 
 
-class student_list(ListView):
-    model=Student
-    template_name="student.html"
-    context_object_name="students"
+
+
+
+
 
 

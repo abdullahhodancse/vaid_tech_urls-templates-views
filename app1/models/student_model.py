@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.functional import cached_property
-from app1.subjects_model import Subject
-from app1.teachers_model import Teacher
-from app1.departments_model import Department
+from app1.models.subjects_model import Subject
+from app1.models.teachers_model import Teacher
+from app1.models.departments_model import Department
 
 
 
@@ -23,7 +23,7 @@ class Student(models.Model):
     
 
     
-    @cached_property  #aita  data memeory te dhore rakhr,,pore call korle just memory the niya dei
+    # @cached_property  #aita  data memeory te dhore rakhr,,pore call korle just memory the niya dei
     
     def __str__(self):
         if self.first_name or self.last_name:
