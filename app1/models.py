@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.functional import cached_property
 
 
 
@@ -30,7 +31,7 @@ class Student(models.Model):
        
 
     #     return self.name if self.name else f"Student ID {self.id}"
-    
+    @cached_property
     def __str__(self):
         if self.first_name or self.last_name:
             return f"{self.first_name or ''} {self.last_name or ''}".strip()
@@ -55,16 +56,18 @@ class Student(models.Model):
         
         
         super().save(*args,**kwargs)
+    
 
     @property    #ekhon html e full_name likhle e full name ddekhabe,,,,alada alada first_name /last_name likha lagbe na
     def full_name(self):
-        return f"{self.name} ({self.roll})" if self.name else f"Student ID {self.id}"    
-    
+        if self.first_name or self.last_name:
+            return f"{self.first_name or ''} {self.last_name or ''}".strip()
+        return f"Student ID {self.id}"
 
 
     @classmethod   #aita holo amar kono obkect er valus change korte use hoy,,
-    def create_student(cls, name, roll, reg, department, session):
-        student = cls(name=name, roll=roll, reg=reg, department=department, session=session)
+    def create_student(cls, first_name,last_name, roll, reg, department, session):
+        student = cls(first_name=first_name,last_name=last_name, roll=roll, reg=reg, department=department, session=session)
         student.save()
         return student
     
