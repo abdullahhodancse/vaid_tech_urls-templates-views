@@ -1,11 +1,13 @@
 from django.contrib import admin
-from  app1.models import Account,Subject,teacher,Department
+from  app1.models import Student,Subject,Teacher,Department
 
 
-admin.site.register(Account)
+admin.site.register(Student)
 admin.site.register(Subject)
-admin.site.register(teacher)
+admin.site.register(Teacher)
 admin.site.register(Department)
+
+# admin.site.register(Profile)
 
 
 
