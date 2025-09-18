@@ -29,10 +29,10 @@ def signup(request):
         if form.is_valid():
             user = form.save()
 
-            # Signal দ্বারা auto-created Student object get করা
+            # signal diya auto profile banano
             student = user.student
 
-            # Form থেকে data assign করা
+            # from theke daya ana
             student.roll = form.cleaned_data.get('roll')
             student.reg = form.cleaned_data.get('reg')
             student.department = form.cleaned_data.get('department')

@@ -4,14 +4,9 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.functional import cached_property
-
-
-
-
-
-
-
-
+from app1.subjects_model import Subject
+from app1.teachers_model import Teacher
+from app1.departments_model import Department
 
 
 
@@ -37,12 +32,6 @@ class Student(models.Model):
    
         
    
-
-
-
-
-
-
     def save( self,*args,**kwargs):
         if self.roll is not None and self.roll<0:
             raise ValueError("Roll can not be negative")
@@ -88,33 +77,7 @@ class Student(models.Model):
         
 
 
-#subject model
-class Subject(models.Model):
-    name=models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.name 
-#department model
-class Department(models.Model):
-    name=models.CharField(max_length=100)  
-
-
-    def __str__(self):
-        return self.name 
-    
-#teacher model
-class Teacher(models.Model):
-   
-    user=models.OneToOneField(User,on_delete=models.CASCADE,related_name="teacher",null=True)
-    name=models.CharField(null=True,max_length=20)
-    slary=models.DecimalField(max_digits=10,decimal_places=2)  
-    subject =models.ManyToManyField(Subject,related_name="teacher_sub")
-    department=models.ForeignKey(Department,on_delete=models.CASCADE, related_name="Teachers")
-
-
-    def __str__(self):
-        return self.name
-    
 
 
 
