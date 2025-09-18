@@ -27,11 +27,9 @@ class Student(models.Model):
     teaher = models.ManyToManyField('Teacher', related_name='students', blank=True)
     
 
-    # def __str__(self):
-       
-
-    #     return self.name if self.name else f"Student ID {self.id}"
-    @cached_property
+    
+    @cached_property  #aita  data memeory te dhore rakhr,,pore call korle just memory the niya dei
+    
     def __str__(self):
         if self.first_name or self.last_name:
             return f"{self.first_name or ''} {self.last_name or ''}".strip()
