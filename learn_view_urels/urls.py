@@ -22,6 +22,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',views.home,name="home"),
     path ('task/', include ('app1.urls'))
 ]
 

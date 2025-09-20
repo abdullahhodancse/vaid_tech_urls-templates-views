@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Teacher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        .search-box {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 250px;
+        }
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        li {
+            margin: 5px 0;
+            padding: 10px;
+            background: #f2f2f2;
+            border-radius: 5px;
+        }
+        a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #333;
+        }
+        a:hover {
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Search Teachers</h1>
+
+    
+
+    <!-- {% if query %}
+        <h2>Results for: "{{ query }}"</h2>
+    {% endif %} -->
+
+    <!-- Show Results -->
+    <ul>
+        {% for teacher in results %}
+            <li>
+                <a href="{% url 'teacher_detail' teacher.pk %}">{{ teacher.name }}</a> <br>
+                Salary: {{ teacher.slary }} <br>
+                Department: {{ teacher.department.name }}
+            </li>
+        {% empty %}
+            <p>No teachers found.</p>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'teacher_list' %}">🔙 Back to Teacher List</a></p>
+
+</body>
+</html>
