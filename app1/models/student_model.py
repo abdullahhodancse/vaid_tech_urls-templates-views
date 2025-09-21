@@ -16,7 +16,10 @@ class Student(models.Model):
     last_name=models.CharField(max_length=100,null=True)
     roll = models.IntegerField( null=True, blank=True,default=0000000)
     reg = models.IntegerField( null=True, blank=True,default=0000)
-    department = models.CharField(max_length=100, null=True, blank=True)
+    
+    new_department = models.ForeignKey(
+        Department, on_delete=models.SET_NULL, null=True, blank=True
+    )
     session = models.CharField(max_length=20, null=True, blank=True,default='2020-2021')
     subjects = models.ManyToManyField('Subject', related_name='students', blank=True)
     teaher = models.ManyToManyField('Teacher', related_name='students', blank=True)
