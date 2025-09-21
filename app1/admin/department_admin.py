@@ -9,3 +9,17 @@ class DepartmentAdmin(admin.ModelAdmin):
     ordering=("id",)
     list_per_page=20
 
+
+    def has_add_permission(self, request):
+        return request.user.is_superuser   #shudu super user student add korte parbe
+    
+
+    def has_change_permission(self, request, obj =None):  #stuss  chage korte parbe
+        return request.user.is_staff
+    
+    def has_delete_permission(self, request, obj = None): #stuff delete korte parbe
+        if request.user.is_stuff:
+            return super().has_delete_permission(request, obj)
+
+        return False
+        
