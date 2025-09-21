@@ -18,7 +18,7 @@ class DepartmentAdmin(admin.ModelAdmin):
         return request.user.is_staff
     
     def has_delete_permission(self, request, obj = None): #stuff delete korte parbe
-        if request.user.is_stuff:
+        if request.user.is_staff:
             return super().has_delete_permission(request, obj)
 
         return False

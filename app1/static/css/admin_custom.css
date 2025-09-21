@@ -1,0 +1,9 @@
+/* Table row color change */
+.model-student tr:nth-child(even) {
+    background-color: #0878da;
+}
+
+/* Change header color */
+#header {
+    background-color: #4caf50;
+}

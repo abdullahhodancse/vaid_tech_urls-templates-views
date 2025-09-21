@@ -13,7 +13,17 @@ class StudentAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'roll', 'reg')
     inlines = [SubjectInline]
 
+
+    class Media:   #use the 
+        css={
+            'all':('css/admin_custom.css',)
+        }
+        js=('js/admin_custoom.js',)
+      
+
+
 @admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):
     list_display = ('name', 'student')
+
 
