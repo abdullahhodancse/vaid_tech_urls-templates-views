@@ -19,4 +19,8 @@ class UserRegistrationForm(UserCreationForm):
         model = User
         fields=['username','first_name','last_name','email','roll','reg','department','session','password1','password2']
 
+
+
+       
+
    

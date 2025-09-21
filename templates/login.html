@@ -19,7 +19,8 @@
         <!-- Buttons for logged-in user -->
         <a href="{% url 'teacher_list' %}" class="btn btn-primary m-1">Teacher List</a>
         <a href="{% url 'student_list' %}" class="btn btn-success m-1">Student List</a>
-       
+        <a href="{% url 'profile' %}" class="btn btn-info m-1">See Profile</a>
+        <a href="{% url 'log_out' %}" class="btn btn-danger m-1">Logout</a> <!-- Logout Button -->
 
     {% else %}
         <p>No account found!</p>

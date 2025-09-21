@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from ..forms import UserRegistrationForm  # Make sure this is your form
+from ..forms.users_forms import UserRegistrationForm  # Make sure this is your form
 from datetime import date
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
