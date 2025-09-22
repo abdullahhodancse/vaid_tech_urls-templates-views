@@ -25,6 +25,7 @@ class Student(models.Model):
     teaher = models.ManyToManyField('Teacher', related_name='students', blank=True)
     photo=models.ImageField(upload_to='app1/media/student_photo/',null=True,blank=True)
     
+    
 
     
     # @cached_property  #aita  data memeory te dhore rakhr,,pore call korle just memory the niya dei
