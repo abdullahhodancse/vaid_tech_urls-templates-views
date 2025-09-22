@@ -5,8 +5,7 @@ from app1.views.student_login_singn_up import signup,login_view
 from app1.views.teacher_list_view import total_salary_view,teacher_list,search_teacher,teacher_details
 from app1.views.profile_both import profile_view,edit_view
 from app1.views.log_out_both import log_out
-from django.conf import settings
-from django.conf.urls.static import static
+
 
 
 urlpatterns=[
@@ -23,6 +22,4 @@ urlpatterns=[
 
     
     
- ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    
-# if settings.DEBUG:
+ ] 

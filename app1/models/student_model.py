@@ -23,7 +23,7 @@ class Student(models.Model):
     session = models.CharField(max_length=20, null=True, blank=True,default='2020-2021')
     subjects = models.ManyToManyField('Subject', related_name='students', blank=True)
     teaher = models.ManyToManyField('Teacher', related_name='students', blank=True)
-    photo=models.ImageField(upload_to='student_photo/',null=True,blank=True)
+    photo=models.ImageField(upload_to='app1/media/student_photo/',null=True,blank=True)
     
 
     
