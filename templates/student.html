@@ -7,10 +7,10 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h2>Student List</h2>
+    <h2 class="mb-4">Student List</h2>
 
     <!-- Filter form -->
-    <form method="get" class="mb-3">
+    <form method="get" class="mb-4">
         <label for="dept" class="form-label">Filter by Department:</label>
         <select name="department" id="dept" class="form-select w-25 d-inline" onchange="this.form.submit()">
             <option value="">-- All --</option>
@@ -22,51 +22,62 @@
         </select>
     </form>
 
-    <!-- Full student table -->
-    <table class="table table-bordered table-striped mt-3">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Full Name</th>
-                <th>Roll</th>
-                <th>Reg</th>
-                <th>Department</th>
-                <th>Session</th>
-                <th>Subjects</th>
-                <th>Teachers</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for student in students %}
-            <tr>
-                <td>{{ student.id }}</td>
-                <td>{{ student.full_name }}</td>
-                <td>{{ student.roll }}</td>
-                <td>{{ student.reg }}</td>
-                <td>{{ student.new_department.name }}</td>
-                <td>{{ student.session }}</td>
-                <td>
-                    {% for subject in student.subjects.all %}
-                        {{ subject.name }}{% if not forloop.last %}, {% endif %}
-                    {% empty %}
-                        None
-                    {% endfor %}
-                </td>
-                <td>
-                    {% for teacher in student.teaher.all %}
-                        {{ teacher.name }}{% if not forloop.last %}, {% endif %}
-                    {% empty %}
-                        None
-                    {% endfor %}
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="8" class="text-center">No students found.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <!-- Student Cards -->
+    <div class="row g-4">
+        {% for student in students %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                
+                <!-- Photo -->
+                {% if student.photo %}
+                    <img src="{{ student.photo.url }}" class="card-img-top" style="height:200px; object-fit:cover;">
+                {% else %}
+                    <img src="https://via.placeholder.com/300x200?text=No+Photo" class="card-img-top" alt="No photo">
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ student.full_name }}</h5>
+                    <p class="card-text mb-1"><strong>Roll:</strong> {{ student.roll }}</p>
+                    <p class="card-text mb-1"><strong>Reg:</strong> {{ student.reg }}</p>
+                    <p class="card-text mb-1"><strong>Dept:</strong> {{ student.new_department.name }}</p>
+                    <p class="card-text mb-1"><strong>Session:</strong> {{ student.session }}</p>
+
+                    <!-- Subjects -->
+                    <p class="card-text mb-1"><strong>Subjects:</strong>
+                        {% for subject in student.subjects.all %}
+                            <span class="badge bg-primary">{{ subject.name }}</span>
+                        {% empty %}
+                            <span class="text-muted">None</span>
+                        {% endfor %}
+                    </p>
+
+                    <!-- Teachers -->
+                    <p class="card-text"><strong>Teachers:</strong>
+                        {% for teacher in student.teaher.all %}
+                            <span class="badge bg-success">{{ teacher.name }}</span>
+                        {% empty %}
+                            <span class="text-muted">None</span>
+                        {% endfor %}
+                    </p>
+                </div>
+
+                <div class="card-footer text-center">
+                    {% if student.submitted_file %}
+                        <a href="{{ student.submitted_file.url }}" class="btn btn-sm btn-outline-info" download>
+                            Download File
+                        </a>
+                    {% else %}
+                        <span class="text-muted">No file</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-warning text-center">No students found.</div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 </body>
 </html>

@@ -41,7 +41,7 @@ def edit_view(request):
 
 
     if request.method=='POST':
-        form=form_class(request.POST,instance=profile) 
+        form=form_class(request.POST,request.FILES,instance=profile) 
         if form.is_valid():
             form.save()
             return redirect('profile')
