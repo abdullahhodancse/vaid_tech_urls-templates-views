@@ -5,6 +5,7 @@ from app1.views.student_login_singn_up import signup,login_view
 from app1.views.teacher_list_view import total_salary_view,teacher_list,search_teacher,teacher_details
 from app1.views.profile_both import profile_view,edit_view
 from app1.views.log_out_both import log_out
+from app1.views.file_view import pdf_cart_view
 
 
 
@@ -18,7 +19,8 @@ urlpatterns=[
     path('teachers/<int:pk>/', teacher_details.as_view(), name='teacher_detail'),
     path('profile/',profile_view,name='profile'),
     path('edit/',edit_view,name='edit'),
-    path('log_out/',log_out,name='log_out')
+    path('log_out/',log_out,name='log_out'),
+    path('pdf-cart/', pdf_cart_view, name='pdf_cart'),
 
     
     

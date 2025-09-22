@@ -27,6 +27,7 @@
                     {{ teacher.name }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
             </p>
+            <p class="card-text"><strong>Total Files Uploaded:</strong> {{ file_count }}</p>
         </div>
     </div>
 
@@ -34,15 +35,17 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">{{ profile.name }}</h5>
-            <p class="card-text"><strong>Salary:</strong> {{ profile.salary }}</p>
+            <p class="card-text"><strong>Salary:</strong> {{ profile.slary }}</p>
             <p class="card-text"><strong>Department:</strong> {{ profile.department }}</p>
             <p class="card-text"><strong>Subjects:</strong> 
                 {% for sub in profile.subject.all %}
                     {{ sub.name }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
             </p>
+            <p class="card-text"><strong>Total Files Uploaded:</strong> {{ file_count }}</p>
         </div>
     </div>
+
     {% else %}
     <p>No profile found.</p>
     {% endif %}

@@ -21,8 +21,8 @@ def profile_view(request):
     else:
         profile=None
         profile_type=None
-
-    context = {'profile':profile, 'profile_type':profile_type}   
+    Student = request.user.uploaded_files.count() if profile else 0
+    context = {'profile':profile, 'profile_type':profile_type,'Student': Student}   
     return render(request, 'profile.html',context)      
 
 
@@ -44,11 +44,26 @@ def edit_view(request):
 
     if request.method=='POST':
         form=form_class(request.POST,request.FILES,instance=profile) 
+        #customize Upload
         if request.FILES.size < 1*1024*1024:
             raise ValueError("File too large")
+        
         if form.is_valid():
-            form.save()
-            return redirect('profile')
+            instance = form.save(commit=False)  # save commit=False
+            instance.user = request.user       # user assign
+            instance.save()
+
+        if Student:
+            Student.objects.create(user=request.user, file=Student)
+
+        
+
+        # এখন ইউজারের আপলোডের সংখ্যা
+        count = request.user.uploaded_files.count()
+        print("এই ইউজারের আপলোড সংখ্যা:", count)
+
+            
+        return redirect('profile')
     else:
         form=form_class(instance=profile)
 

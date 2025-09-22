@@ -39,3 +39,6 @@ class teacher_details(DetailView):
     template_name="search_teacher.html"
     model=Teacher
     context_object_name="teacher_result"
+
+
+

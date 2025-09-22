@@ -12,6 +12,7 @@ class Teacher(models.Model):
     slary=models.DecimalField(max_digits=10,decimal_places=2)  
     subject =models.ManyToManyField(Subject,related_name="teacher_sub")
     department=models.ForeignKey(Department,on_delete=models.CASCADE, related_name="Teachers")
+    profile_image_base64 = models.TextField(null=True, blank=True)
 
 
     def __str__(self):
