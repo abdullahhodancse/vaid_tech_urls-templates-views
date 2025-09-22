@@ -4,6 +4,8 @@ from app1.models.student_model import Student
 from app1.models.teachers_model import Teacher
 from app1.forms.student_profile_form import student_pro_form
 from app1.forms.teacher_profile_forms import Teacher_pro_form
+import os
+
 
 @login_required
 
@@ -42,6 +44,8 @@ def edit_view(request):
 
     if request.method=='POST':
         form=form_class(request.POST,request.FILES,instance=profile) 
+        if request.FILES.size < 1*1024*1024:
+            raise ValueError("File too large")
         if form.is_valid():
             form.save()
             return redirect('profile')

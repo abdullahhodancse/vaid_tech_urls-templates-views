@@ -10,7 +10,7 @@ class SubjectInline(admin.TabularInline):   #jokhon noton student add korte jabo
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'roll', 'reg','photo')
+    list_display = ('first_name', 'last_name', 'roll', 'reg','photo','document')
     inlines = [SubjectInline]
 
 

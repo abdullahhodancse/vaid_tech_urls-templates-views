@@ -62,8 +62,8 @@
                 </div>
 
                 <div class="card-footer text-center">
-                    {% if student.submitted_file %}
-                        <a href="{{ student.submitted_file.url }}" class="btn btn-sm btn-outline-info" download>
+                    {% if student.document %}
+                        <a href="{{ student.document.url }}" class="btn btn-sm btn-outline-info" download>
                             Download File
                         </a>
                     {% else %}

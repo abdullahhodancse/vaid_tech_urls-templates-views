@@ -24,7 +24,8 @@ class Student(models.Model):
     subjects = models.ManyToManyField('Subject', related_name='students', blank=True)
     teaher = models.ManyToManyField('Teacher', related_name='students', blank=True)
     photo=models.ImageField(upload_to='app1/media/student_photo/',null=True,blank=True)
-    
+    document=models.FileField(upload_to='app1/media/student/document',null=True,blank=True)
+
     
 
     
